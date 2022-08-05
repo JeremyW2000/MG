@@ -30,9 +30,19 @@ def readFile(dir):
 if __name__ == "__main__":
     
     path = "Info/programming-task-example-data.log"
-
     file = readFile(path)
 
+    logMap = dict()
+
+    for logText in file:
+        log = Log(logText)
+        if log.ip not in logMap.keys():
+            logMap[log.ip] = [log]
+        else:
+            logMap[log.ip] = logMap[log.ip] + [log]
+
+    for key in logMap.keys():
+        print(key ,len(logMap[key]))
     
 
 
